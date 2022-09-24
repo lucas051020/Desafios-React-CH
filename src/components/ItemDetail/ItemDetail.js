@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import ItemCount from '../ItemCount/ItemCount'
+import { CartContext } from '../Cart/CartContext';
 import { Link } from "react-router-dom";
 
 const ItemDetail = ({item}) => {
   const [itemCount, setItemCount] = useState(0);
+  const ctx = useContext(CartContext);
 
   const onAdd = (qty) => {
     alert("You have selected " + qty + " items!");
     setItemCount(qty);
+    ctx.addItem(item, qty);
   }
 
   return (
@@ -29,7 +32,7 @@ const ItemDetail = ({item}) => {
       {
         itemCount === 0 
         ? <ItemCount initial={itemCount} stock={item.stock} onAdd={onAdd} />
-        : <Link to="/cart"><button type="button" className="btn btn-danger">Checkout</button></Link>
+        : <Link to="/cart"><button type="button" className="btn btn-info">Checkout</button></Link>
       }
     </>
   );

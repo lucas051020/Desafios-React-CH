@@ -2,7 +2,7 @@ import React from 'react'
 import './Item.css'
 import { Link } from "react-router-dom";
 
-const Item = ({img, title, cost}) => {
+const Item = ({img, title, cost, id}) => {
   return (
     <>
         <div className="card">
@@ -10,7 +10,7 @@ const Item = ({img, title, cost}) => {
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">${cost}</p>
-                <Link to="/item/:idItem"><a className="btn btn-primary">+ Details</a> </Link>
+                <Link to={`/item/${id}`}><a className="btn btn-primary">+ Details</a> </Link>
             </div>
         </div>
     </>
@@ -18,3 +18,5 @@ const Item = ({img, title, cost}) => {
 }
 
 export default Item
+
+// "/item/:itemId"

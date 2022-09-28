@@ -34,8 +34,8 @@ const Cart = () => {
 
               <section className='order-summary'>
                 <h3>Order Summary</h3>
-                <p>Subtotal</p>
-                <h4>Total: {item.cost}</h4>
+                <p>Subtotal: ${item.cost * item.quantity}</p>
+                <h4>Total: {ctx.totalCost()}</h4>
                 <button type="button" onClick={ctx.clear} className="btn btn-success">Finish Shopping</button>
               </section>
             </div>

@@ -1,14 +1,18 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState } from "react";
 export const CartContext = createContext();
  
 
 const CartContextProvider = ({ children }) => {
     const [cartList, setCartList] = useState([]);
 
-    const addItem = (item, newQuantity) => {
-      const newCart = cartList.map(items => items.id !== item.id);
-      newCart.push({ ...item, quantity: newQuantity});
-      setCartList(newCart);
+    const addItem = (item, quantity) => {
+      if(isInCart(item.id)){
+        setCartList(cartList.map(product => {
+          return product.id === item.id ? {...product, quantity: product.quantity + quantity} : product
+        }));
+      } else {
+        setCartList([...cartList, {...item, quantity}]);
+      }
     }
 
     console.log('carrito: ', cartList);
@@ -18,7 +22,6 @@ const CartContextProvider = ({ children }) => {
     //   return cost.reduce((prev, act) => prev + act.quantity * act.cost, 0);
     // }
 
-    
     const totalProducts = () => cartList.reduce((acc, currentProduct) => acc + currentProduct.quantity, 0);
 
 
@@ -34,10 +37,6 @@ const CartContextProvider = ({ children }) => {
       return cartList.find(item => item.id === id) ? true : false;
     }
 
-    const calcItemsQty = () => {
-      let qtys = cartList.map(item => item.quantity);
-      return qtys.reduce(((previousValue, currentValue) => previousValue + currentValue), 0);
-    }
 
   return (
     <CartContext.Provider value={{
@@ -48,7 +47,6 @@ const CartContextProvider = ({ children }) => {
         removeItem,
         isInCart,
         totalProducts,
-        calcItemsQty,
         //calcDiscount,
         //totalCost,
         //totalPrice

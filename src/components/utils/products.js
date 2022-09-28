@@ -3,7 +3,7 @@ const products =[
         "title": "Joystick PS3",
         "stock": 50,
         "cost": 700,
-        "description": "lorem Ipsum",
+        "description": "lorem Ipsum is simply dummy, Lorem Ipsum is simply a dummy, Lorem Ipsum is simply a dummy, Lorem Ipsum is simply a dummy, Lorem Ipsum is simply a dummy, Lorem Ipsum is simply a dummy, Lorem Ipsum is simply a dummy, Lorem Ipsum is simply a dummy, Lorem Ipsum is simply a dummy, Lorem Ips",
         "categoryId": "category3",
         "modelId": "JYS3",
         "img":["https://i.ibb.co/fr22bfx/jostickps3.jpg"] ,

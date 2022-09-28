@@ -7,11 +7,11 @@ const ItemDetail = ({item}) => {
   const [itemCount, setItemCount] = useState(0);
   const ctx = useContext(CartContext);
 
-  const onAdd = (qty) => {
-    alert("You have selected " + qty + " items!");
-    setItemCount(qty);
-    ctx.addItem(item, qty);
+  const onAdd = (quantity) => {
+    setItemCount(true);
+    ctx.addItem(item, quantity);
   }
+  console.log(ctx.addItem);
 
   return (
     <>

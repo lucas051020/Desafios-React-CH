@@ -1,21 +1,17 @@
-import { createContext, useState } from "react";
-
+import { createContext, useState, useContext } from "react";
 export const CartContext = createContext();
+ 
 
 const CartContextProvider = ({ children }) => {
-    const [cartList, setCarList] = useState([]);
+    const [cartList, setCartList] = useState([]);
 
-    const addItem = (item, quantity) => {
+    const addItem = (item, newQuantity) => {
       const newCart = cartList.map(items => items.id !== item.id);
-      newCart.push({ ...item, quantity: quantity});
-      setCarList(newCart);
+      newCart.push({ ...item, quantity: newQuantity});
+      setCartList(newCart);
     }
 
     console.log('carrito: ', cartList);
-
-    // const totalPrice = () => {
-    //   return cartList.reduce((prev + act) => prev + act.quantity * act.cost, 0);
-    // }
 
     // const totalCost = () => {
     //   let cost = cartList.map (item => item.cost);
@@ -23,27 +19,15 @@ const CartContextProvider = ({ children }) => {
     // }
 
     
-    // const totalProducts = () => cartList.reduce((acc, currentProduct) => acc + currentProduct.quantity, 0);
+    const totalProducts = () => cartList.reduce((acc, currentProduct) => acc + currentProduct.quantity, 0);
 
-    const calcSubTotal = () => {
-      let totalPeirItem = cartList.map(item => totalPeirItem(item.id));
-      return totalPeirItem.reduce((previousValue, currentValue) => previousValue + currentValue);
-    }
-
-    const calcDiscount = () => {
-      return calcSubTotal() * 0.20;
-    }
-
-    const calcTotal = () => {
-      return calcSubTotal();
-    }
 
     const clear = () => {
-      setCarList([]);
+      setCartList([]);
     };
 
     const removeItem = (itemId) => {
-        setCarList(cartList.filter(item => item.id !== itemId));
+        setCartList(cartList.filter(item => item.id !== itemId));
     }
 
     const isInCart = (id) => {
@@ -60,12 +44,12 @@ const CartContextProvider = ({ children }) => {
         cartList,
         addItem,
         clear,
-        calcTotal,
+        //calcTotal,
         removeItem,
         isInCart,
-        //totalProducts,
+        totalProducts,
         calcItemsQty,
-        calcDiscount,
+        //calcDiscount,
         //totalCost,
         //totalPrice
       }} >

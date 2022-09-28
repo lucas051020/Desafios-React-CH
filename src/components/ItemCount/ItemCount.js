@@ -40,7 +40,7 @@ const ItemCount = ({initial, stock, onAdd}) => {
       <button onClick={() => restar()} type="button" className="btn btn-primary btn-count">-</button>
       <span className="btn-count">{ItemCount}</span>
       <button onClick={() => sumar()} type="button" className="btn btn-primary btn-count">+</button>
-      <button onClick={() => onAdd()} type="button" className="btn btn-primary btn-cart">Add to Cart</button>
+      <button onClick={() => onAdd(ItemCount)} type="button" className="btn btn-primary btn-cart">Add to Cart</button>
     </div>
   );
 }

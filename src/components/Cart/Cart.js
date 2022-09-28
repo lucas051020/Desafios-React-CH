@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
-import { CartContext } from './CartContext';
+import { CartContext } from '../Cart/CartContext';
+import React, { useContext } from 'react'
 import "./Cart.css"
 
 const Cart = () => {
@@ -24,19 +24,18 @@ const Cart = () => {
               <section className='m-3'>
                   <p>Product: {item.title}</p>
                   <p>Stock: {item.stock}</p>
-                  <button type="button" onClick={() => ctx.removeItem(item.id)} className="btn btn-danger">Delete</button>
+                  <button type="button" onClick={() => ctx.removeItem(item.id)}  className="btn btn-danger">Delete</button>
               </section>
 
               <section className='m-3'>
-                <p>{item.quantity}Item(s)/${item.cost}</p>
+                <p>{item.quantity} Item(s)/${item.cost}</p>
                 <p>${item.cost * item.quantity}</p>
               </section>
 
               <section className='order-summary'>
                 <h3>Order Summary</h3>
                 <p>Subtotal</p>
-                <p>Discount</p>
-                <h4>Total</h4>
+                <h4>Total: {item.cost}</h4>
                 <button type="button" onClick={ctx.clear} className="btn btn-success">Finish Shopping</button>
               </section>
             </div>
